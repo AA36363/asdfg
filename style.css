@@ -1,0 +1,162 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+body, html {
+  width: 100%;
+  min-height: 100%;
+  background-color: #1a1a1e;
+  color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  /* ページ全体の自由な縦スクロールを許可 */
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-y;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  min-height: 100vh;
+  padding-top: env(safe-area-inset-top);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* 上側：ステージ描画エリア（左右の余白部分を触れば上下スクロール可能） */
+.stage-area {
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #0d0d0f;
+  padding: 10px 0;
+  position: relative;
+  touch-action: pan-y; /* 余白部分での縦スクロールを許可 */
+}
+
+.canvas-wrapper {
+  position: relative;
+  width: 92vw;
+  display: flex;
+  justify-content: center;
+  touch-action: pan-y;
+}
+
+canvas {
+  width: 92vw !important;
+  height: auto !important;
+  display: block;
+  background-color: #2a2a2e;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.6);
+  touch-action: pan-y; /* 通常時は縦スクロールを許可（枠/キャラ操作時のみJavaScriptでスクロール停止） */
+}
+
+/* 下側：操作パネル */
+.control-panel {
+  width: 100vw;
+  background-color: #25252b;
+  border-top: 3px solid #00ffcc;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  box-shadow: 0 -4px 15px rgba(0,0,0,0.5);
+  touch-action: pan-y; /* パネル内スクロール許可 */
+}
+
+.control-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.file-btn {
+  display: block;
+  text-align: center;
+  background-color: #007aff;
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.file-name {
+  font-size: 0.8rem;
+  color: #aaa;
+  text-align: center;
+  word-break: break-all;
+}
+
+.sub-btn {
+  background-color: #3a3a42;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  cursor: pointer;
+  width: 100%;
+}
+
+.slider-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background-color: #1a1a1e;
+  padding: 8px 12px;
+  border-radius: 6px;
+}
+
+.slider-group label {
+  font-size: 0.85rem;
+  color: #ddd;
+}
+
+.highlight-val {
+  color: #00ffcc;
+  font-weight: bold;
+}
+
+input[type="range"] {
+  width: 100%;
+  height: 28px;
+  cursor: pointer;
+}
+
+.fine-tune-buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.step-btn {
+  background-color: #2e2e38;
+  color: #00ffcc;
+  border: 1px solid #00ffcc;
+  padding: 10px 0;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.step-btn:active {
+  background-color: #00ffcc;
+  color: #1a1a1e;
+}
